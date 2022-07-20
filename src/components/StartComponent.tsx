@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Starts } from "../interfaces";
-
+import './StartComponent.styles.scss'
 const StartComponent = ({ handleClick }: Starts) => {
     return (
         <div className="start-screen">
