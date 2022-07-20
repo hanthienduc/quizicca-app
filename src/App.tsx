@@ -19,7 +19,6 @@ function App(): JSX.Element {
   const [isShownCorrect, setIsShownCorrect] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
-
   useEffect(() => {
     const questions = questionsData?.results.map(question_item => {
       const answers = shuffleArray([question_item.correct_answer, ...question_item.incorrect_answers])
@@ -94,7 +93,6 @@ function App(): JSX.Element {
     })
     setIsShownCorrect(true)
 
-    // compare usersAnswer with correct answer list 
     if (showScore.isShow) {
       setShowScore({
         isShow: false,
