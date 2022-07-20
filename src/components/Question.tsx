@@ -10,8 +10,8 @@ const Question = ({ question_id, question, choices, handleClick, correctAnswer }
         return <li onClick={(e) => handleClick(e, question_id, choice.id)}
             key={choice.id}
             className={`${choice.isSelect ? 'select' : ''}
+            ${correctAnswer.isShownCorrect && (choice.isSelect && correctAnswer.correct !== choice.content) ? 'show-error' : ''}
              ${correctAnswer.isShownCorrect && correctAnswer.correct === choice.content ? 'show-correct' : ''}
-             ${correctAnswer.isShownCorrect && choice.isSelect ? 'show-error' : ''}
             `}>
             {choice.content}</li>
     })
