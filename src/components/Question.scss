@@ -1,0 +1,35 @@
+$primary-color:  #293264;
+.question-content {
+  border-bottom: 1px solid #dbdef0;
+  margin-bottom: 0.75rem;
+  .question-title {
+    font-size: 1rem;
+    max-width: 400px;
+  }
+  ul.answers {
+    display: flex;
+    list-style: none;
+    margin: 0.75rem 0;
+    li {
+      color: $primary-color;
+      border: 1px solid $primary-color;
+      border-radius: 7px;
+      margin-right: 0.75rem;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 5px;
+      min-width: 66px;
+      font-size: 11px;
+      font-weight: 500;
+      cursor: pointer;
+
+      .select {
+        border: none;
+        background-color: #D6DBF5;
+      }
+    }
+    
+  }
+}

@@ -17,12 +17,16 @@ body {
 
 .app {
   max-width: 550px;
-  height: 550px;
+  min-height: 550px;
+  height: 100%;
   margin: 20px auto;
   background-color: #f5f7fb;
   z-index: 1;
   overflow: clip;
   position: relative;
+  justify-content: center;
+  align-items: center;
+  display: flex;
   .lemon {
     position: absolute;
     width: 297px;
@@ -32,9 +36,9 @@ body {
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     transform: rotate(-128.49deg);
     background-color: #e1caad;
-    border-radius: 100px;
+    border-radius: 28%;
   }
-  .baby{
+  .baby {
     position: absolute;
     width: 297px;
     height: 235px;
@@ -48,7 +52,6 @@ body {
 
   .start-screen {
     z-index: 2;
-    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -63,19 +66,34 @@ body {
       color: #293264;
       margin: 20px 0px;
     }
-    .start {
-      background-color: #4d5b9e;
-      color: white;
-      border: none;
-      border-radius: 15px;
-      padding: 1rem 3rem;
-      cursor: pointer;
-    }
-    .start:hover{
+  }
+  .btn {
+    background-color: #4d5b9e;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 1rem 3rem;
+    cursor: pointer;
+
+    &:hover {
       background-color: #43508f;
     }
-    .start:active {
+    &:active {
       box-shadow: inset 0px 2px 7px rgba($color: #fff, $alpha: 0.6);
     }
+  }
+
+  .quiz-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3rem;
+  }
+
+  .check {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    max-width: 200px;
+    margin: 0.75rem auto 0 auto;
   }
 }
