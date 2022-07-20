@@ -35,3 +35,15 @@ export interface Answer {
 export interface UserAnswers {
     answers: Answer[]
 }
+
+export interface QuestionProps {
+    question_id: string,
+    question: string,
+    choices: Answer[],
+
+    correctAnswer: {
+        isShownCorrect: boolean,
+        correct: string
+    }
+    handleClick: (event: React.MouseEvent<HTMLLIElement>, question_id: string, choice_id: string) => void
+}

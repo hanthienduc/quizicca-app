@@ -1,18 +1,7 @@
 import { nanoid } from "nanoid";
 import React, { useState } from "react";
-import { Answer } from "../interfaces";
+import { Answer, QuestionProps } from "../interfaces";
 import "./Question.scss"
-interface QuestionProps {
-    question_id: string,
-    question: string,
-    choices: Answer[],
-
-    correctAnswer: {
-        isShownCorrect: boolean,
-        correct: string
-    }
-    handleClick: (event: React.MouseEvent<HTMLLIElement>, question_id: string, choice_id: string) => void
-}
 
 const Question = ({ question_id, question, choices, handleClick, correctAnswer }: QuestionProps) => {
 
