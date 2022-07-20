@@ -88,12 +88,18 @@ body {
     flex-direction: column;
     justify-content: center;
     padding: 3rem;
+    .result-area {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin-top: 0.75rem;
+    }
   }
 
   .check {
     padding-left: 2rem;
     padding-right: 2rem;
     max-width: 200px;
-    margin: 0.75rem auto 0 auto;
+    margin-left: 0.75rem;
   }
 }

@@ -1,10 +1,10 @@
-$primary-color:  #293264;
+$primary-color: #293264;
 .question-content {
   border-bottom: 1px solid #dbdef0;
   margin-bottom: 0.75rem;
   .question-title {
     font-size: 1rem;
-    max-width: 400px;
+    max-width: 500px;
   }
   ul.answers {
     display: flex;
@@ -24,12 +24,18 @@ $primary-color:  #293264;
       font-size: 11px;
       font-weight: 500;
       cursor: pointer;
-
-      .select {
-        border: none;
-        background-color: #D6DBF5;
-      }
     }
-    
+    .select {
+      border: none;
+      background-color: #d6dbf5;
+    }
+    .show-correct {
+      background-color: #94D7A2;
+      border: none;
+    }
+    .show-error {
+      background-color: #F8BCBC;
+      border: none;
+    }
   }
 }

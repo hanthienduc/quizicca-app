@@ -2,7 +2,6 @@ export interface Starts {
     handleClick: (param?: any) => void
 }
 
-
 export interface QuestionsData {
     response_code: number,
     results: QuestionDataItem[]
@@ -19,9 +18,10 @@ export interface Questions {
 }
 
 export interface QuestionItem {
+    id: string,
     question: string,
     correct_answer: string,
-    choice: Answer[]
+    choices: Answer[]
 }
 
 
