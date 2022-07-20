@@ -32,10 +32,6 @@ export interface Answer {
     isSelect: boolean
 }
 
-export interface UserAnswers {
-    answers: Answer[]
-}
-
 export interface QuestionProps {
     question_id: string,
     question: string,
@@ -47,3 +43,10 @@ export interface QuestionProps {
     }
     handleClick: (event: React.MouseEvent<HTMLLIElement>, question_id: string, choice_id: string) => void
 }
+
+
+export interface Score {
+    isShow: boolean,
+    score: number
+}
+

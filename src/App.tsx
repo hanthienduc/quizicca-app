@@ -2,35 +2,23 @@ import React, { useEffect, useState } from 'react';
 import './App.scss';
 import StartComponent from './components/StartComponent';
 import Question from './components/Question';
-import { QuestionItem, Questions, QuestionsData, UserAnswers, Answer } from './interfaces';
+import { QuestionItem, Questions, QuestionsData, Answer, Score } from './interfaces';
 import { nanoid } from 'nanoid';
-import { shuffleArray } from './utils';
-// https://opentdb.com/api.php?amount=5&category=31&type=multiple
-// https://docs.google.com/document/d/1vfkePMndAqWhJVeJ291P3xtJR-BtBE6wbOx6lX_iBxQ/edit
+import { fetchData, shuffleArray } from './utils';
+const QUESTION_API_URL = "https://opentdb.com/api.php?amount=5&category=31&type=multiple"
 // https://www.figma.com/file/Ngad5NqMwZfbGsbLiMluT4/Quizzical-App-(Copy)?node-id=8%3A2
-// https://scrimba.com/learn/learnreact/react-section-4-solo-project-co24f49bea8aace7c174082c8
-
-interface Score {
-  isShow: boolean,
-  score: number
-}
 
 function App(): JSX.Element {
   const [start, setStart] = useState(false)
   const [questionsData, setQuestionsData] = useState<QuestionsData | null>(null)
   const [questions, setQuestions] = useState<Questions | null>(null)
-  const [userAnswers, setUserAnswers] = useState<UserAnswers | null>(null)
   const [showScore, setShowScore] = useState<Score>({
     isShow: false,
     score: 0
   })
   const [isShownCorrect, setIsShownCorrect] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
-  let getQuestionsData = async () => {
-    await fetch('https://opentdb.com/api.php?amount=5&category=31&type=multiple')
-      .then(response => response.json())
-      .then((json) => setQuestionsData(json))
-  }
 
   useEffect(() => {
     const questions = questionsData?.results.map(question_item => {
@@ -56,8 +44,18 @@ function App(): JSX.Element {
 
 
   const startQuizHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setIsLoading(true)
     setStart(prevState => !prevState)
-    getQuestionsData()
+    setTimeout(() => {
+      fetchData(QUESTION_API_URL)
+        .then(data => {
+          setQuestionsData(data)
+          setIsLoading(false)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }, 2000)
   }
 
   const answerSelectedHandler = (event: React.MouseEvent<HTMLLIElement>, question_id: string, choice_id: string) => {
@@ -129,15 +127,18 @@ function App(): JSX.Element {
     <div className="app">
       <div className='lemon' style={lemonStyle}></div>
       <div className='baby' style={babyStyle}></div>
-      {!start ? <StartComponent handleClick={startQuizHandler} /> : (
-        <div className='quiz-container'>
-          {QuestionElements}
-          <div className='result-area'>
-            {showScore.isShow && <h3>You scored {showScore.score}/5</h3>}
-            <button className="btn check" onClick={CheckAnswerHandler}>{!showScore.isShow ? 'Check Answers' : 'Start New Quiz?'}</button>
+      {!start ? <StartComponent handleClick={startQuizHandler} /> : isLoading ?
+        <img src={require('./assets/loading.gif')} alt='wait for data' />
+        : (
+          <div className='quiz-container'>
+            {QuestionElements}
+            <div className='result-area'>
+              {showScore.isShow && <h3>You scored {showScore.score}/5</h3>}
+              <button className="btn check" onClick={CheckAnswerHandler}>{!showScore.isShow ? 'Check Answers' : 'Start New Quiz?'}</button>
+            </div>
           </div>
-        </div>
-      )}
+        )
+      }
 
     </div>
   );
