@@ -12,12 +12,12 @@ const Question = ({ question_id, question, choices, handleClick, correctAnswer }
             className={`${choice.isSelect ? 'select' : ''}
             ${correctAnswer.isShownCorrect && (choice.isSelect && correctAnswer.correct !== choice.content) ? 'show-error' : ''}
              ${correctAnswer.isShownCorrect && correctAnswer.correct === choice.content ? 'show-correct' : ''}
-            `}>
-            {choice.content}</li>
+            `} dangerouslySetInnerHTML={{ __html: `${choice.content}` }} />
+
     })
     return (
         <div className="question-content">
-            <h3 className="question-title">{question}</h3>
+            <h3 className="question-title" dangerouslySetInnerHTML={{ __html: `${question}` }} />
             <ul className="answers">
                 {answerElements}
             </ul>
