@@ -1,6 +1,4 @@
-import { nanoid } from "nanoid";
-import React, { useState } from "react";
-import { Answer, QuestionProps } from "../interfaces";
+import { QuestionProps } from "../interfaces";
 import "./Question.scss"
 
 const Question = ({ question_id, question, choices, handleClick, correctAnswer }: QuestionProps) => {
