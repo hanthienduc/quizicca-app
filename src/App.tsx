@@ -54,7 +54,7 @@ function App(): JSX.Element {
         .catch(err => {
           console.log(err)
         })
-    }, 2000)
+    }, 100)
   }
 
   const answerSelectedHandler = (event: React.MouseEvent<HTMLLIElement>, question_id: string, choice_id: string) => {
@@ -83,14 +83,14 @@ function App(): JSX.Element {
       ).map(item => item.content).join()
 
     })
-    userSelectedAnswer?.map(selectedAnswer => {
+    userSelectedAnswer?.map(selectedAnswer =>
       setShowScore(prevScore => {
         return {
           isShow: !prevScore.isShow,
           score: selectedAnswer !== '' ? prevScore.score + 1 : prevScore.score
         }
       })
-    })
+    )
     setIsShownCorrect(true)
 
     if (showScore.isShow) {
@@ -126,7 +126,7 @@ function App(): JSX.Element {
       <div className='lemon' style={lemonStyle}></div>
       <div className='baby' style={babyStyle}></div>
       {!start ? <StartComponent handleClick={startQuizHandler} /> : isLoading ?
-        <img src={require('./assets/loading.gif')} alt='wait for data' />
+        <img src={require('./assets/loading.gif')} width="100" height="100" alt='wait for data' />
         : (
           <div className='quiz-container'>
             {QuestionElements}
